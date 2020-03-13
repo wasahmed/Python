@@ -287,16 +287,65 @@
 #############Classes#########################
 #used to define new types
 #eg shopping car
-class Point:
-    def move(self):
-        print ("move")
-    def draw(self):
-        print ("draw")
+# class Point:
+#     def __init__(self,x,y):     #constructor
+#         self.x = x              #self is ref to the current obj
+#         self.y = y
+#     def move(self):                 #method
+#         print ("move")
+#     def draw(self):
+#         print ("draw")
+#
+#
+# point1 = Point(10,20)           #object/instance
+# # point1.x = 10                 #attribute
+# # point1.y = 20
+# print (point1.x)
+
+# class Person:
+#     def __init__(self, name, talk):
+#         self.name = name
+#         self.talk = talk
+#
+#     def talknow(self):
+#         print self.talk
+#
+#
+# x = Person("x","hello")
+# print x.talk
+
+###########Inheritance#################DRY
+# class Mammal:
+#     def walk(self):
+#         print ("walk")
+#
+# class Dog(Mammal):
+#     def bark(self):
+#         print ("bark")
+#
+#
+# class Cat(Mammal):
+#     def meow(self):
+#         print "meow"
+#
+# puppy = Dog()
+# print (puppy.walk())
+
+############Modules########################a file
+# import converters
+# from converters import kg_to_lbs
+# print converters.kg_to_lbs(80)
+# print kg_to_lbs(45)
 
 
-point1 = Point()
-point1.x = 10
-point1.y = 20
-print (point1.x)
-point2 = Point()
-print (point2.x)
+###########Packages############################
+#directory or folder of related work
+#use from .... import.....
+
+#########Builtin modules######################
+#python 3 module index
+
+#pathlib
+
+
+
