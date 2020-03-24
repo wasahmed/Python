@@ -315,21 +315,21 @@
 # print x.talk
 
 ###########Inheritance#################DRY
-# class Mammal:
-#     def walk(self):
-#         print ("walk")
-#
-# class Dog(Mammal):
-#     def bark(self):
-#         print ("bark")
-#
-#
-# class Cat(Mammal):
-#     def meow(self):
-#         print "meow"
-#
-# puppy = Dog()
-# print (puppy.walk())
+class Mammal:
+    def walk(self):
+        print ("walk")
+
+class Dog(Mammal):
+    def bark(self):
+        print ("bark")
+
+
+class Cat(Mammal):
+    def meow(self):
+        print "meow"
+
+puppy = Dog()
+print (puppy.walk())
 
 ############Modules########################a file
 # import converters
@@ -348,4 +348,17 @@
 #pathlib
 
 
+############if __main__ =  '__main___'#################
+
+def main():
+    print "app.py is being ran directly"
+    puppy = Dog()
+    print (puppy.walk())
+
+if __name__ == '__main__':
+    # print "main is being used in app.py"
+    main()
+else:
+    # print __name__ + " is being used"
+    print "__name__.py is being ran directly"
 
