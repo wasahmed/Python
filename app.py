@@ -315,21 +315,21 @@
 # print x.talk
 
 ###########Inheritance#################DRY
-class Mammal:
-    def walk(self):
-        print ("walk")
+# class Mammal:
+#     def walk(self):
+#         print ("walk")
 
-class Dog(Mammal):
-    def bark(self):
-        print ("bark")
+# class Dog(Mammal):
+#     def bark(self):
+#         print ("bark")
 
 
-class Cat(Mammal):
-    def meow(self):
-        print "meow"
+# class Cat(Mammal):
+#     def meow(self):
+#         print "meow"
 
-puppy = Dog()
-print (puppy.walk())
+# puppy = Dog()
+# print (puppy.walk())
 
 ############Modules########################a file
 # import converters
@@ -350,15 +350,96 @@ print (puppy.walk())
 
 ############if __main__ =  '__main___'#################
 
-def main():
-    print "app.py is being ran directly"
-    puppy = Dog()
-    print (puppy.walk())
+# def main():
+#     print "app.py is being ran directly"
+#     puppy = Dog()
+#     print (puppy.walk())
 
-if __name__ == '__main__':
-    # print "main is being used in app.py"
-    main()
-else:
-    # print __name__ + " is being used"
-    print "__name__.py is being ran directly"
+# if __name__ == '__main__':
+#     # print "main is being used in app.py"
+#     main()
+# else:
+#     # print __name__ + " is being used"
+#     print "__name__.py is being ran directly"
 
+
+#############Decorators######################
+#PART 1
+#closures is an important underlying concept to understand here
+# closure here will remember the message variable even after executing
+# def outer_function():
+#     message = 'hi'
+
+#     def inner_function():
+#         print (message)
+#     return inner_function  #returning the function without executing it... when calling the outer_function, it will return the inner function
+#                             #waiting to be executed 
+
+# x = outer_function()
+# x()
+# x()
+# x()
+
+#PART 2
+# def outer_function(msg):
+#     def inner_function():
+#         print (msg)
+#     return inner_function  #returning the function without executing it... when calling the outer_function, it will return the inner function
+#                             #waiting to be executed 
+
+# hi = outer_function('hello')
+# bye = outer_function('bye')
+
+# hi()
+# bye()
+
+#PART 3
+# A decorator is a function that takes in another function as an arg, adds some functionality, and returns another function, without 
+# altering the original code function that was passed in
+
+# def decorator_function(original_function):
+#     def wrapper_function():
+#         print ('some additional functionality of the display function without changing the code of display()')
+#         return original_function()
+#     return wrapper_function  #returning the function without executing it... when calling the decorator_function, it will return the wrapper function
+#                             #waiting to be execute
+
+# def display():
+#     print('this function ran')
+
+# dec_disp = decorator_function(display)
+
+# dec_disp()
+
+#PART 4 syntax
+# def decorator_function(original_function):
+#     def wrapper_function():
+#         print ('some additional functionality of the display function without changing the code of display()')
+#         return original_function()
+#     return wrapper_function  #returning the function without executing it... when calling the decorator_function, it will return the wrapper function
+#                             #waiting to be execute
+
+# @decorator_function
+# def display():
+#     print('this function ran')
+
+# display()
+
+#PART 5 args and kwargs
+def decorator_function(original_function):
+    def wrapper_function(*args, **kwargs): #args and kwargs allow us to accept any number of positional or keyword args for our functions
+        print ('some additional functionality of the display function without changing the source code of the function')
+        return original_function(*args, **kwargs)
+    return wrapper_function  #returning the function without executing it... when calling the decorator_function, it will return the wrapper function
+                            #waiting to be execute
+
+@decorator_function
+def display():
+    print('this function ran')
+
+@decorator_function
+def display_info(name, age):
+    print('two args ({},{})'.format(name,age))
+
+display()
+display_info('john', 20)
