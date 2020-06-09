@@ -426,20 +426,109 @@
 # display()
 
 #PART 5 args and kwargs
-def decorator_function(original_function):
-    def wrapper_function(*args, **kwargs): #args and kwargs allow us to accept any number of positional or keyword args for our functions
-        print ('some additional functionality of the display function without changing the source code of the function')
-        return original_function(*args, **kwargs)
-    return wrapper_function  #returning the function without executing it... when calling the decorator_function, it will return the wrapper function
-                            #waiting to be execute
+# def decorator_function(original_function):
+#     def wrapper_function(*args, **kwargs): #args and kwargs allow us to accept any number of positional or keyword args for our functions
+#         print ('some additional functionality of the display function without changing the source code of the function')
+#         return original_function(*args, **kwargs)
+#     return wrapper_function  #returning the function without executing it... when calling the decorator_function, it will return the wrapper function
+#                             #waiting to be execute
 
-@decorator_function
-def display():
-    print('this function ran')
+# @decorator_function
+# def display():
+#     print('this function ran')
 
-@decorator_function
-def display_info(name, age):
-    print('two args ({},{})'.format(name,age))
+# @decorator_function
+# def display_info(name, age):
+#     print('two args ({},{})'.format(name,age))
 
-display()
-display_info('john', 20)
+# display()
+# display_info('john', 20)
+
+
+
+
+#################REGEX########################
+
+
+# .       - Any Character Except New Line
+# \d      - Digit (0-9)
+# \D      - Not a Digit (0-9)
+# \w      - Word Character (a-z, A-Z, 0-9, _)
+# \W      - Not a Word Character
+# \s      - Whitespace (space, tab, newline)
+# \S      - Not Whitespace (space, tab, newline)
+
+# \b      - Word Boundary
+# \B      - Not a Word Boundary
+# ^       - Beginning of a String
+# $       - End of a String
+
+# []      - Matches Characters in brackets , character set 
+# [^ ]    - Matches Characters NOT in brackets
+# |       - Either Or
+# ( )     - Group
+
+# Quantifiers:
+# *       - 0 or More
+# +       - 1 or More
+# ?       - 0 or One
+# {3}     - Exact Number
+# {3,4}   - Range of Numbers (Minimum, Maximum)
+
+
+#### Sample Regexs ####
+
+# r - raw str - doesn't handle backslashs in any specific way eg print(r'\thello')
+# re.compile - allows us to seperate our patterns into variables/ reusable
+# finditer gives us span and match
+# to search for a special character we have escape the special character using a \
+import re
+
+text_to_search = '''
+abcdefghijklmnopqurtuvwxyz
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+1234567890
+Ha HaHa
+MetaCharacters (Need to be escaped):
+. ^ $ * + ? { } [ ] \ | ( )
+coreyms.com
+321-555-4321
+123.555.1234
+123*555*1234
+800-555-1234
+900-555-1234
+Mr. Schafer
+Mr Smith
+Ms Davis
+Mrs. Robinson
+Mr. T
+
+cat 
+mat 
+pat 
+bat
+'''
+
+sentence = 'Start a sentence and then bring it to an end'
+
+
+# pattern = re.compile(r'abc')
+# pattern = re.compile(r'coreyms\.com')
+# pattern = re.compile(r'\d\d\d.\d\d\d.\d\d\d\d')
+# pattern = re.compile(r'\d{3}.\d{3}.\d{4}')
+# pattern = re.compile(r'[^b]at')
+pattern = re.compile(r'M(r|s|rs)\.?\s[A-Z]\w*')
+
+matches = pattern.finditer(text_to_search)
+
+
+for match in matches:
+    print(match)
+
+# reading from a file
+# with open('data.txt', 'r') as f:
+#     contents = f.read()
+#     matches = pattern.finditer(contents)
+
+#     for match in matches:
+#         print(match)   #.group
